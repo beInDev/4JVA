@@ -1,4 +1,6 @@
 # 4JVA
+LISTE DES TÂCHES: https://github.com/beInDev/4JVA/issues
+
 Projet de JEE
 
 Un site permettant de faire du troc. 
