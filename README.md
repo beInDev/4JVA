@@ -1,6 +1,8 @@
 # 4JVA
 LISTE DES TÂCHES: https://github.com/beInDev/4JVA/issues
 
+##### IMPORTANT: Lancer le contenu du script [init.sql](Scripts/init.sql) sur votre instance MySQL avant de lancer le serveur, sinon la persistence ne fonctionnera pas!
+
 Projet de JEE
 
 Un site permettant de faire du troc. 
