@@ -1,3 +1,6 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!doctype html>
 
 <html lang="en">
@@ -32,8 +35,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-    <link rel="stylesheet" href="Static/styles/material.min.css">
-    <link rel="stylesheet" href="Static/styles/styles.css">
+    <link type="text/css" rel="stylesheet" href="<c:url value="Static/styles/material.min.css"/>" />
+    <link type="text/css" rel="stylesheet" href="<c:url value="Static/styles/styles.css"/>" />
    
   </head>
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -47,13 +50,13 @@
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
         </div>
         <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-          <a href="#overview" class="mdl-layout__tab is-active">Index</a>
+          <a href="<c:url value="index.jsp"/>" class="mdl-layout__tab is-active">Index</a>
           <!-- hidden when logged in -->
-          <a href="#features" class="mdl-layout__tab">Login/Register</a>
+          <a href="<c:url value="login.jsp"/>" class="mdl-layout__tab">Login/Register</a>
           <!-- hidden when not logged in -->
-          <a href="#features" class="mdl-layout__tab">Browse objects</a>
-          <a href="#features" class="mdl-layout__tab">My Objects</a>
-          <a href="#features" class="mdl-layout__tab">Logout</a>
+          <a href="<c:url value="browseObjects.jsp"/>" class="mdl-layout__tab">Browse objects</a>
+          <a href="<c:url value="myObjects.jsp"/>" class="mdl-layout__tab">My Objects</a>
+          <a href="<c:url value="#"/>" class="mdl-layout__tab">Logout</a>
           <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
             <i class="material-icons" role="presentation">add</i>
             <span class="visuallyhidden">Add</span>
