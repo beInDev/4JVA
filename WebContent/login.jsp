@@ -1,7 +1,6 @@
 <%@include file="Includes/header.jsp" %>
 
-	<div class="mdl-layout mdl-js-layout mdl-color--grey-100">
-		<main class="mdl-layout__content">
+=		<main class="mdl-layout__content">
 			<div class="mdl-card mdl-shadow--6dp">
 				<div class="mdl-card__title mdl-color--primary mdl-color-text--white">
 					<h2 class="mdl-card__title-text">Log In SupBartering</h2>
@@ -23,6 +22,5 @@
 				</div>
 			</div>
 		</main>
-	</div>
 
 <%@include file="Includes/footer.jsp" %>
