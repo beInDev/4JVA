@@ -56,6 +56,7 @@
           <!-- hidden when not logged in -->
           <a href="<c:url value="browseObjects.jsp"/>" class="mdl-layout__tab">Browse objects</a>
           <a href="<c:url value="myObjects.jsp"/>" class="mdl-layout__tab">My Objects</a>
+          <a href="<c:url value="profile.jsp"/>" class="mdl-layout__tab">My profile</a>
           <a href="<c:url value="#"/>" class="mdl-layout__tab">Logout</a>
           <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
             <i class="material-icons" role="presentation">add</i>
