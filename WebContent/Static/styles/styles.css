@@ -251,3 +251,12 @@ html, body {
 .mdl-demo .mdl-menu__container {
   z-index: 99;
 }
+
+.mdl-layout {
+	align-items: center;
+  justify-content: center;
+}
+.mdl-layout__content {
+	padding: 24px;
+	flex: none;
+}
