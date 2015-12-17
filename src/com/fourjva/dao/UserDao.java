@@ -1,5 +1,6 @@
 package com.fourjva.dao;
 
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -9,7 +10,12 @@ import com.fourjva.dao.base.JpaDao;
 import com.fourjva.entities.Item;
 import com.fourjva.entities.User;
 
+@Stateless
 public class UserDao extends JpaDao {
+	
+	public UserDao() {
+		super(User.class);
+	}
 	
 	public User getOwner(Item item)
 	{

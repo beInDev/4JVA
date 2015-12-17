@@ -8,15 +8,17 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
-import com.fourjva.dao.base.Dao;
 import com.fourjva.dao.base.JpaDao;
 import com.fourjva.entities.Item;
 import com.fourjva.entities.User;
 
 @Stateless
-public class ItemDao extends JpaDao<Item,Integer> {
+public class ItemDao extends JpaDao {
 
+	public ItemDao() {
+		super(Item.class);
+	}
+	
 	public List getUserItems(User user){
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<Item> cquery = builder.createQuery(Item.class);

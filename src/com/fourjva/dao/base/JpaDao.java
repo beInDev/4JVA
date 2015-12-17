@@ -7,36 +7,30 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ejb.Stateless;
 
-@Stateless
-public abstract class JpaDao<E,K extends Serializable> implements Dao<E, K> {
+public abstract class JpaDao<E> {
 	protected Class<E> entity;
 	@PersistenceContext
 	protected EntityManager manager;
 	
-	public JpaDao() {
-		ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
-		this.entity = (Class<E>) genericSuperclass.getActualTypeArguments()[0];
+	public JpaDao(Class<E> entityClass) {
+		this.entity = entityClass;
 	}
 
-	@Override
 	public E persist(E entity) {
 		this.manager.persist(entity);
 		return entity;
 	}
 
-	@Override
 	public void remove(E entity) {
 		this.manager.remove(entity);
 	}
-	
-	@Override
+
 	public E update(E entity) {
 		this.manager.merge(entity);
 		return entity;
 	}
 
-	@Override
-	public E findById(K id) {
+	public E findById(int id) {
 		E e = this.manager.find(this.entity, id);
 		return e;
 	}
