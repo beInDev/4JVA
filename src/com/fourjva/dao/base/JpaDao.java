@@ -9,6 +9,7 @@ import javax.transaction.UserTransaction;
 import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 
+
 @Stateless
 public abstract class JpaDao<E> {
 	protected Class<E> entity;

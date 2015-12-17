@@ -21,7 +21,6 @@ public class Item implements Serializable {
 	@Id
 	@GeneratedValue
 	public int ItemId;
-	public int UserId;
 	public String Title;
 	public String Description;
 	public Double Price;
@@ -33,14 +32,6 @@ public class Item implements Serializable {
 
 	public Item() {
 		super();
-		this.ItemId = 123;
-		UserId = 012;
-		Title = "Kappa";
-		Description = "xD";
-		Price = 22.0;
-		Type = "WOOH";
-		ImageURL = "xDDDD";
-		Owner = null;
 	}   
 
 	public Item(int id, String title) {
