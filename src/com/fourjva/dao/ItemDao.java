@@ -13,31 +13,31 @@ import com.fourjva.entities.Item;
 import com.fourjva.entities.User;
 
 @Stateless
-public class ItemDao extends JpaDao {
+public class ItemDao extends JpaDao<Item> {
 
 	public ItemDao() {
 		super(Item.class);
 	}
 	
-	public List getUserItems(User user){
-		CriteriaBuilder builder = manager.getCriteriaBuilder();
+	public List<Item> getUserItems(User user){
+		CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<Item> cquery = builder.createQuery(Item.class);
 		Root<Item> item = cquery.from(Item.class);
 		cquery.select(item);
 		cquery.where(builder.equal(item.get("Owner"), user));
-		TypedQuery<Item> query = manager.createQuery(cquery);
-		List items = query.getResultList();
+		TypedQuery<Item> query = getEntityManager().createQuery(cquery);
+		List<Item> items = query.getResultList();
 		return items;
 	}
 	
-	public List getAllItems()
+	public List<Item> getAllItems()
 	{
-		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<Item> cquery = builder.createQuery(Item.class);
 		Root<Item> item = cquery.from(Item.class);
 		cquery.select(item);
-		TypedQuery<Item> query = manager.createQuery(cquery);
-		List items = query.getResultList();
+		TypedQuery<Item> query = getEntityManager().createQuery(cquery);
+		List<Item> items = query.getResultList();
 		return items;
 	}
 }

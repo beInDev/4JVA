@@ -16,8 +16,7 @@ public class Items {
 	@Path("create")
 	public String getLastItems() {
 		Item item = new Item();
-		item.setItemId(0);
-		item.setTitle("roflmao");
+		item.Title = "roflmao";
 		ItemDao dao = new ItemDao();
 		dao.persist(item);
 		return "lol internet";

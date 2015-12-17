@@ -11,7 +11,7 @@ import com.fourjva.entities.Item;
 import com.fourjva.entities.User;
 
 @Stateless
-public class UserDao extends JpaDao {
+public class UserDao extends JpaDao<User> {
 	
 	public UserDao() {
 		super(User.class);
@@ -19,12 +19,12 @@ public class UserDao extends JpaDao {
 	
 	public User getOwner(Item item)
 	{
-		CriteriaBuilder builder = manager.getCriteriaBuilder();
+		CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
 		CriteriaQuery<User> cquery = builder.createQuery(User.class);
 		Root<User> user = cquery.from(User.class);
 		cquery.select(user);
-		cquery.where(builder.equal(user.get("Id"), item.getUserId()));
-		TypedQuery<User> query = manager.createQuery(cquery);
+		cquery.where(builder.equal(user.get("Id"), item.ItemId));
+		TypedQuery<User> query = getEntityManager().createQuery(cquery);
 		User u = query.getResultList().get(0);
 		return u;
 		

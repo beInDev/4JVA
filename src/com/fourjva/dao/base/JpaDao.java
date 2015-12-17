@@ -1,37 +1,77 @@
 package com.fourjva.dao.base;
 
-import java.io.Serializable;
-import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceUnit;
+import javax.transaction.UserTransaction;
 import javax.ejb.Stateless;
+import javax.naming.InitialContext;
 
+@Stateless
 public abstract class JpaDao<E> {
 	protected Class<E> entity;
-	@PersistenceContext
-	protected EntityManager manager;
+	@PersistenceUnit(unitName="4JV")
+	protected EntityManagerFactory factory;
+	
+	protected UserTransaction transaction;
+	
+	protected EntityManager getEntityManager(){
+		return factory.createEntityManager();
+	}
 	
 	public JpaDao(Class<E> entityClass) {
 		this.entity = entityClass;
+		factory = Persistence.createEntityManagerFactory("4JV");
+		try {
+			transaction = (UserTransaction)new InitialContext().lookup("java:comp/UserTransaction");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public E persist(E entity) {
-		this.manager.persist(entity);
-		return entity;
+		try {
+			transaction.begin();
+			this.getEntityManager().persist(entity);
+			this.getEntityManager().flush();
+			transaction.commit();
+			return entity;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public void remove(E entity) {
-		this.manager.remove(entity);
+		try {
+			transaction.begin();
+			this.getEntityManager().remove(entity);
+			this.getEntityManager().flush();
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	public E update(E entity) {
-		this.manager.merge(entity);
-		return entity;
+		try {
+			transaction.begin();
+			this.getEntityManager().merge(entity);
+			this.getEntityManager().flush();
+			transaction.commit();
+			return entity;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 	public E findById(int id) {
-		E e = this.manager.find(this.entity, id);
+		E e = this.getEntityManager().find(this.entity, id);
 		return e;
 	}
 }
