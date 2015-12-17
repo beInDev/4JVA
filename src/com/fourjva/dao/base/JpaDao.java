@@ -5,7 +5,9 @@ import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ejb.Stateless;
 
+@Stateless
 public abstract class JpaDao<E,K extends Serializable> implements Dao<E, K> {
 	protected Class<E> entity;
 	@PersistenceContext

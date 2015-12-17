@@ -3,6 +3,7 @@ package com.fourjva.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -13,7 +14,8 @@ import com.fourjva.dao.base.JpaDao;
 import com.fourjva.entities.Item;
 import com.fourjva.entities.User;
 
-public class ItemDao extends JpaDao {
+@Stateless
+public class ItemDao extends JpaDao<Item,Integer> {
 
 	public List getUserItems(User user){
 		CriteriaBuilder builder = manager.getCriteriaBuilder();

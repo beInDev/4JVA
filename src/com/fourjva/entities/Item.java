@@ -4,11 +4,17 @@ import java.io.Serializable;
 import java.lang.Double;
 import java.lang.String;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
 
 /**
  * Entity implementation class for Entity: item
  *
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement
 
 @Entity
 public class Item implements Serializable {
@@ -26,7 +32,22 @@ public class Item implements Serializable {
 
 	public Item() {
 		super();
+		this.ItemId = 123;
+		UserId = 012;
+		Title = "Kappa";
+		Description = "xD";
+		Price = 22.0;
+		Type = "WOOH";
+		ImageURL = "xDDDD";
+		Owner = null;
 	}   
+
+	public Item(int id, String title) {
+		super();
+		this.ItemId = id;
+		this.Title = title;
+	}
+
 	public int getItemId() {
 		return this.ItemId;
 	}
