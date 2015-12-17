@@ -9,11 +9,9 @@ import javax.persistence.*;
  * Entity implementation class for Entity: item
  *
  */
+
 @Entity
-
-public class item implements Serializable {
-
-	   
+public class Item implements Serializable {
 	@Id
 	private int ItemId;
 	private int UserId;
@@ -22,9 +20,11 @@ public class item implements Serializable {
 	private Double Price;
 	private String Type;
 	private String ImageURL;
+	@OneToOne(targetEntity=User.class)
+	private User Owner;
 	private static final long serialVersionUID = 1L;
 
-	public item() {
+	public Item() {
 		super();
 	}   
 	public int getItemId() {

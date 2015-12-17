@@ -2,16 +2,16 @@ package com.fourjva.entities;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
-import sun.security.util.Password;
 
 /**
  * Entity implementation class for Entity: users
  *
  */
 @Entity
-
-public class users implements Serializable {
+public class User implements Serializable {
 
 	   
 	@Id
@@ -21,10 +21,12 @@ public class users implements Serializable {
 	private String LName;
 	private String Email;
 	private int CodePostal;
-	private Password password;
+	private String Password;
+	@OneToMany(targetEntity=Item.class)
+	private List Items;
 	private static final long serialVersionUID = 1L;
 
-	public users() {
+	public User() {
 		super();
 	}   
 	public int getUserId() {
@@ -69,12 +71,12 @@ public class users implements Serializable {
 	public void setCodePostal(int CodePostal) {
 		this.CodePostal = CodePostal;
 	}   
-	public Password getPassword() {
-		return this.password;
+	public String getPassword() {
+		return this.Password;
 	}
 
-	public void setPassword(Password password) {
-		this.password = password;
+	public void setPassword(String password) {
+		this.Password = password;
 	}
    
 }
