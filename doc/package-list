@@ -1,0 +1,6 @@
+com.fourjva.dao
+com.fourjva.dao.base
+com.fourjva.entities
+com.fourjva.filters
+com.fourjva.rest
+com.fourjva.servlets

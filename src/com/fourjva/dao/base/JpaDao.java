@@ -6,18 +6,26 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
 import javax.transaction.UserTransaction;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.naming.InitialContext;
 
-
+/**
+ * Base class for managing persisted entities and creating DAOs
+ * @param <E> Entity class on which the DAO will work
+ */
 @Stateless
-public abstract class JpaDao<E> {
+public abstract class JpaDao<E> { 
 	protected Class<E> entity;
 	@PersistenceUnit(unitName="4JV")
 	protected EntityManagerFactory factory;
-	
+	@Resource
 	protected UserTransaction transaction;
 	
+	/**
+	 * Creates and return an EntityManager instance for the current PersistenceUnit
+	 * @return EntityManager
+	 */
 	protected EntityManager getEntityManager(){
 		return factory.createEntityManager();
 	}
@@ -32,6 +40,11 @@ public abstract class JpaDao<E> {
 		}
 	}
 
+	/**
+	 * Persists an Entity
+	 * @param entity The Entity to persist
+	 * @return Entity
+	 */
 	public E persist(E entity) {
 		try {
 			transaction.begin();
@@ -45,6 +58,10 @@ public abstract class JpaDao<E> {
 		return null;
 	}
 
+	/**
+	 * Removes an Entity from persistence
+	 * @param entity The Entity to remove
+	 */
 	public void remove(E entity) {
 		try {
 			transaction.begin();
@@ -56,7 +73,10 @@ public abstract class JpaDao<E> {
 		}
 		
 	}
-
+	/**
+	 * Updates an entity
+	 * @param entity The entity to update
+	 */
 	public E update(E entity) {
 		try {
 			transaction.begin();
@@ -70,7 +90,11 @@ public abstract class JpaDao<E> {
 		}
 		
 	}
-
+	/**
+	 * Retrieve an entity with the specified ID
+	 * @param id The Entity's ID
+	 * @return Entity
+	 */
 	public E findById(int id) {
 		E e = this.getEntityManager().find(this.entity, id);
 		return e;

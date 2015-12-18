@@ -14,12 +14,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 
 
 /**
- * Entity implementation class for Entity: item
+ * Entity implementation class for Entity: Item
  *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement
-
 @Entity
 public class Item implements Serializable {
 	@Id

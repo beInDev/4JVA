@@ -10,6 +10,9 @@ import com.fourjva.dao.base.JpaDao;
 import com.fourjva.entities.Item;
 import com.fourjva.entities.User;
 
+/**
+ * DAO handling all User access requests
+ */
 @Stateless
 public class UserDao extends JpaDao<User> {
 	
@@ -17,6 +20,13 @@ public class UserDao extends JpaDao<User> {
 		super(User.class);
 	}
 	
+	/**
+	 * Retrieve the owner of an Item
+	 * @param item The Item to retrieve the owner of
+	 * @return User
+	 * @see User
+	 * @see Item
+	 */
 	public User getOwner(Item item)
 	{
 		CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();

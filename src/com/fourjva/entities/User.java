@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: users
+ * Entity implementation class for Entity: User
  *
  */
 @Entity

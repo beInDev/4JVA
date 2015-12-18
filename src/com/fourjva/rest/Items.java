@@ -12,7 +12,9 @@ import javax.ws.rs.QueryParam;
 import com.fourjva.dao.ItemDao;
 import com.fourjva.entities.Item;
 
-
+/**
+ * Items WebService to manage items from the API
+ */
 @Path("items")
 public class Items {
 
@@ -29,6 +31,11 @@ public class Items {
 	@GET
 	@Path("last")
 	@Produces("application/json")
+	/**
+	 * Retrieves the 10 last added items
+	 * @return List
+	 * @see Item
+	 */
 	public List<Item> getLastItems() {
 		ItemDao dao = new ItemDao();
 		List<Item> listItems = dao.getLatestItems();
@@ -44,6 +51,11 @@ public class Items {
 	
 	@GET
 	@Path("search")
+	/**
+	 * Search for items corresponding to the specified filters
+	 * @return List
+	 * @see Item
+	 */
 	public String searchItems(@QueryParam("itemId") String itemId, @QueryParam("quantity") int qty) {
 		
 		return "created " + qty + " item #" + itemId;
