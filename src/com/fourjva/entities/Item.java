@@ -3,8 +3,6 @@ package com.fourjva.entities;
 import java.io.Serializable;
 import java.lang.Double;
 import java.lang.String;
-import java.sql.Timestamp;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.*;
