@@ -9,7 +9,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SUP'Bartering</title>
 
     <!-- Add to homescreen for Chrome on Android -->
@@ -44,24 +43,17 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
         <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
           <h3>SUP'Bartering</h3>
+          <nav class="mdl-navigation">
+	          <a href="<%=request.getContextPath()%>/" class="mdl-navigation__link is-active">Index</a>
+	          <!-- hidden when logged in -->
+	          <a href="<%=request.getContextPath()%>/login" class="mdl-navigation__link" >Login</a>
+	          <a href="<%=request.getContextPath()%>/register" class="mdl-navigation__link">Register</a>
+	          <!-- hidden when not logged in -->
+	          <a href="<%=request.getContextPath()%>/browse" class="mdl-navigation__link">Browse objects</a>
+	          <a href="<%=request.getContextPath()%>/myobjects" class="mdl-navigation__link">My Objects</a>
+	          <a href="<%=request.getContextPath()%>/profile" class="mdl-navigation__link">My profile</a>
+        	</nav>
         </div>
-        <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        </div>
-        <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark">
-          <a href="<c:url value="index.jsp"/>" class="mdl-layout__tab is-active">Index</a>
-          <!-- hidden when logged in -->
-          <a href="<c:url value="login.jsp"/>" class="mdl-layout__tab">Login/Register</a>
-          <!-- hidden when not logged in -->
-          <a href="<c:url value="browseObjects.jsp"/>" class="mdl-layout__tab">Browse objects</a>
-          <a href="<c:url value="myObjects.jsp"/>" class="mdl-layout__tab">My Objects</a>
-          <a href="<c:url value="profile.jsp"/>" class="mdl-layout__tab">My profile</a>
-          <a href="<c:url value="#"/>" class="mdl-layout__tab">Logout</a>
-          <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent" id="add">
-            <i class="material-icons" role="presentation">add</i>
-            <span class="visuallyhidden">Add</span>
-          </button>
-        </div>
+        
       </header>

@@ -4,6 +4,7 @@ package com.fourjva.dao;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -31,12 +32,13 @@ public class ItemDao extends JpaDao<Item> {
 	 * @see Item
 	 */
 	public List<Item> getUserItems(User user){ // 
-		CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+		EntityManager em = getEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Item> cquery = builder.createQuery(Item.class);
 		Root<Item> item = cquery.from(Item.class);
 		cquery.select(item);
 		cquery.where(builder.equal(item.get(Item_.Owner), user));
-		TypedQuery<Item> query = getEntityManager().createQuery(cquery);
+		TypedQuery<Item> query = em.createQuery(cquery);
 		List<Item> items = query.getResultList();
 		return items;
 	}
@@ -46,11 +48,12 @@ public class ItemDao extends JpaDao<Item> {
 	 */
 	public List<Item> getAllItems()
 	{
-		CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+		EntityManager em = getEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Item> cquery = builder.createQuery(Item.class);
 		Root<Item> item = cquery.from(Item.class);
 		cquery.select(item);
-		TypedQuery<Item> query = getEntityManager().createQuery(cquery);
+		TypedQuery<Item> query = em.createQuery(cquery);
 		List<Item> items = query.getResultList();
 		return items;
 	}
@@ -60,13 +63,45 @@ public class ItemDao extends JpaDao<Item> {
 	 */
 	public List<Item> getLatestItems()
 	{
-		CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
+		EntityManager em = getEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Item> cquery = builder.createQuery(Item.class);
 		Root<Item> item = cquery.from(Item.class);
 		cquery.select(item);
 		cquery.orderBy(builder.desc(item.get(Item_.CreatedWhen)));
-		TypedQuery<Item> query = getEntityManager().createQuery(cquery);
+		TypedQuery<Item> query = em.createQuery(cquery);
 		List<Item> items = query.getResultList();
 		return items;
+	}
+	/**
+	 * Gets the last added item
+	 * @return Item
+	 */
+	public Item getLastItem()
+	{
+		EntityManager em = getEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Item> cquery = builder.createQuery(Item.class);
+		Root<Item> item = cquery.from(Item.class);
+		cquery.select(item);
+		cquery.orderBy(builder.desc(item.get(Item_.CreatedWhen)));
+		TypedQuery<Item> query = em.createQuery(cquery);
+		List<Item> items = query.getResultList();
+		if(items.size() > 0)
+			return items.get(0);
+		else
+			return null;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Long getTotalItemCount() {
+		EntityManager em = getEntityManager();
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Long> cquery = builder.createQuery(Long.class);
+		cquery.select(builder.count(cquery.from(Item.class)));
+		return em.createQuery(cquery).getSingleResult();
 	}
 }

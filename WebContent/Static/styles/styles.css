@@ -260,3 +260,12 @@ html, body {
 	padding: 24px;
 	flex: none;
 }
+
+main {
+    top: 75px;
+    position: absolute;
+}
+header {
+    top: 0px;
+    position: absolute;
+}

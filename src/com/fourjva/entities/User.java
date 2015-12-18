@@ -21,7 +21,7 @@ public class User implements Serializable {
 	private String FName;
 	private String LName;
 	private String Email;
-	private int CodePostal;
+	private String CodePostal;
 	private String Password;
 	@OneToMany(targetEntity=Item.class)
 	private List<Item> Items;
@@ -71,12 +71,12 @@ public class User implements Serializable {
 		Email = email;
 	}
 
-	public int getCodePostal() {
+	public String getCodePostal() {
 		return CodePostal;
 	}
 
-	public void setCodePostal(int codePostal) {
-		CodePostal = codePostal;
+	public void setCodePostal(String postalCode) {
+		CodePostal = postalCode;
 	}
 
 	public String getPassword() {
