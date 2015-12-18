@@ -23,7 +23,7 @@ public class UserDao extends JpaDao<User> {
 		CriteriaQuery<User> cquery = builder.createQuery(User.class);
 		Root<User> user = cquery.from(User.class);
 		cquery.select(user);
-		cquery.where(builder.equal(user.get("Id"), item.ItemId));
+		cquery.where(builder.equal(user.get("Id"), item.getItemId()));
 		TypedQuery<User> query = getEntityManager().createQuery(cquery);
 		User u = query.getResultList().get(0);
 		return u;
